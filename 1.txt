@@ -1,0 +1,213 @@
+Реализуйте следующие классы (включая конструктор по умолчанию, конструктор 
+копирования, оператор копирования и деструктор). Реализуйте в каждом из операторов,
+конструкторов и деструкторов уникальный вывод на экран, чтобы видеть 
+последовательность вызовов.
+1. Класс Mouse для объектов компьютерной мыши.
+2. Класс Printer для объектов типа принтера.
+3. Класс Monitor для объектов типа монитора.
+
+
+
+#include <iostream>
+#include<string>
+using namespace std;
+
+#define first 1
+#define second 0
+#define third 0
+
+#if first
+class mouse
+{
+	int button;
+	bool wireless;
+
+public:
+	mouse(int p_button, bool p_wireless) : button (p_button), wireless (p_wireless)
+	{
+		cout << "\n\tконструктор инициализации.   " << this << "\n\n";
+	}
+
+	mouse(const mouse& p)
+	{
+		cout << "\n\tконструктор копирования.   " << this << "\n\n";
+		button = p.button + 1;
+		wireless = p.wireless;
+	}
+
+	mouse& operator=(const mouse& rhs) 
+	{
+		cout << "\n\tОператор копирования.   " << this << "\n\n";
+		if (this != &rhs) 
+		{
+			if (button != rhs.button)
+				button = rhs.button;
+
+			if (wireless != rhs.wireless)
+				wireless = rhs.wireless;
+		}
+
+		return *this;
+	}
+
+
+	~mouse()
+	{
+		cout << "\n\tдеструктор.   " << this << "\n\n";
+	}
+
+
+
+	void print()
+	{
+		cout << "\n\tКоличество кнопок: " << button << "\n\tБеспроводная?: " << this << wireless << endl << endl;
+	}
+
+
+};
+
+int main()
+{
+	setlocale(0, "");
+
+	mouse m1(2, false);
+	mouse m2 = m1;
+
+	m1.print();
+	m2.print();
+
+	return 0;
+}
+#endif
+
+
+
+#if second
+class printer
+{
+	string lazer;
+	string scaner;
+
+public:
+	printer(string p_lazer, string p_scaner) : lazer(p_lazer), scaner(p_scaner)
+	{
+		cout << "\n\tконструктор инициализации.   " << this << "\n\n";
+	}
+
+	printer(const printer& p)
+	{
+		cout << "\n\tконструктор копирования.   " << this << "\n\n";
+		lazer = p.lazer;
+		scaner = p.scaner;
+	}
+
+	printer& operator=(const printer& rhs)
+	{
+		cout << "\n\tОператор копирования.   " << this << "\n\n";
+		if (this != &rhs)
+		{
+			if (lazer != rhs.lazer)
+				lazer = rhs.lazer;
+
+			if (scaner != rhs.scaner)
+				scaner = rhs.scaner;
+		}
+
+		return *this;
+	}
+
+
+	~printer()
+	{
+		cout << "\n\tдеструктор.   " << this << "\n\n";
+	}
+
+
+
+	void print()
+	{
+		cout << "\n\tЛазерный?: " << lazer << "\n\tЕсть сканер?: " << this << scaner << endl << endl;
+	}
+
+
+};
+
+int main()
+{
+	setlocale(0, "");
+
+	printer p1("Yes", "No");
+	printer p2 = p1;
+
+	p1.print();
+	p2.print();
+
+	return 0;
+}
+#endif
+
+
+
+#if third
+class monitor
+{
+	string LCD;
+	int inch;
+
+public:
+	monitor(string p_LCD, int p_inch) : LCD(p_LCD), inch(p_inch)
+	{
+		cout << "\n\tконструктор инициализации.   " << this << "\n\n";
+	}
+
+	monitor(const monitor& p)
+	{
+		cout << "\n\tконструктор копирования.   " << this << "\n\n";
+		LCD = p.LCD;
+		inch = p.inch;
+	}
+
+	monitor& operator=(const monitor& rhs)
+	{
+		cout << "\n\tОператор копирования.   " << this << "\n\n";
+		if (this != &rhs)
+		{
+			if (LCD != rhs.LCD)
+				LCD = rhs.LCD;
+
+			if (inch != rhs.inch)
+				inch = rhs.inch;
+		}
+
+		return *this;
+	}
+
+
+	~monitor()
+	{
+		cout << "\n\tдеструктор.   " << this << "\n\n";
+	}
+
+
+
+	void print()
+	{
+		cout << "\n\tLCD?: " << LCD << "\n\tДиагональ в дюймах?: " << inch << this << endl << endl;
+	}
+
+
+};
+
+int main()
+{
+	setlocale(0, "");
+
+	monitor m1("Yes", 23);
+	monitor m2 = m1;
+
+	m1.print();
+	m2.print();
+
+	return 0;
+}
+#endif
